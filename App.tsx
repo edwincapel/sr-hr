@@ -1,12 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import HomePage from './src/pages/homepage'
+
+import Navbar from './src/components/navbar';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <BrowserRouter>
+        <Navbar />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => <HomePage {...props} />}
+          />
+        </Switch>
+    </BrowserRouter>
   );
 }
 
