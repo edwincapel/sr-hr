@@ -1,17 +1,32 @@
-import React, { useState } from "react";
-import { Container, Col, Row } from "reactstrap";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import React, { useState, useCallback } from "react";
+import {
+  Container,
+  Col,
+  Row,
+  Button,
+  Form,
+  FormGroup,
+  Label
+} from "reactstrap";
+import { useDropzone } from 'react-dropzone';
+
 import { Props } from "../helpers/helpers";
+
 
 export default function StepOne(props: Props) {
   const [file, setFile] = useState();
 
-  const handleChange = ({file}): any => {
-    
-  };
+  const onDrop = useCallback(acceptedFiles => {
+    setFile(acceptedFiles)
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop
+  });
 
-  console.log(file);
-  
+  const handleChange = (): void => {
+    props.setFile(file);
+    props.setStep(4);
+  };
 
   return (
     <Container className={"h-100"} fluid>
@@ -22,17 +37,19 @@ export default function StepOne(props: Props) {
               <Label for="firstName" className="mr-sm-2">
                 Upload Resume
               </Label>
-              <Input
-                type="file"
-                name="resume"
-                id="resume"
-                placeholder="Resume"
-                onChange={(e)=>{}}
-              />
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                  <p>Drop the files here ...</p>
+                ) : (
+                  <p>Drag 'n' drop some files here, or click to select files</p>
+                )}
+              </div>
             </FormGroup>
             <Button
               onClick={e => {
                 e.preventDefault;
+                handleChange()
               }}
             >
               Submit
