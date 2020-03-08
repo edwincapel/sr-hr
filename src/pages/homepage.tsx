@@ -7,6 +7,7 @@ export default function Homepage() {
   const [name, setName] = useState("")
   const [mail, setMail] = useState("");
   const [about, setAbout] = useState("");
+  const [file, setFile] = useState()
   
   console.log(name);
   
@@ -18,8 +19,13 @@ export default function Homepage() {
     mail,
     setMail,
     about,
-    setAbout
+    setAbout,
+    file,
+    setFile,
   });
+
+  console.log(file);
+  
 
   return (
     <Container className="h-100" fluid>
