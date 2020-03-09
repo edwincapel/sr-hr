@@ -3,6 +3,7 @@ import StepOne from '../components/stepOne';
 import StepTwo from '../components/stepTwo';
 import StepThree from '../components/stepThree';
 import Review from '../components/review';
+import Welcome from '../components/welcome';
 
 export interface Props {
   step: number;
@@ -22,10 +23,11 @@ interface IStepsComponents {
 }
 
 export const stepsComponents: IStepsComponents = {
-  1: StepOne,
-  2: StepTwo,
-  3: StepThree,
-  4: Review,
+  1: Welcome,
+  2: StepOne,
+  3: StepTwo,
+  4: StepThree,
+  5: Review,
 };
 
 function formHelper(
