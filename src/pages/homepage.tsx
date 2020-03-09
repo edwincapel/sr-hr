@@ -9,7 +9,6 @@ export default function Homepage() {
   const [about, setAbout] = useState("");
   const [file, setFile] = useState()
   
-  console.log(name);
   
   const whichForm = formHelper({
     step,
@@ -26,11 +25,19 @@ export default function Homepage() {
 
   console.log(file);
   
+  const background = {
+    backgroundImage: `url(${require('../../assets/team.jpg')})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    filter: 'grayscale(100%)',
+  }
 
   return (
     <Container className="h-100" fluid>
       <Row className="h-100">
-        <Col md={6}></Col>
+        <Col md={6} className="" style={{...background, position: 'relative'}}>
+          <img src={`${require('../../assets/logosr.png')}`} style={{position: 'absolute', top: 20}} alt=""/>
+        </Col>
         <Col className="h-100 p-0" md={6}>
           {whichForm}
         </Col>

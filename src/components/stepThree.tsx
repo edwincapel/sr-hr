@@ -8,25 +8,34 @@ import {
   FormGroup,
   Label
 } from "reactstrap";
-import { useDropzone } from 'react-dropzone';
+import Dropzone from "react-dropzone";
 
 import { Props } from "../helpers/helpers";
-
+import { Dropbox } from 'dropbox';
 
 export default function StepOne(props: Props) {
-  const [file, setFile] = useState();
+  const onDrop = (file:any) => {
+    file.map((file:any) => {
+      const dbx = new Dropbox({
+        accessToken:
+          "Lyja3onZiXAAAAAAAAAAC_yQRSCxnYRSfWc4QZVO2okiWPR3jpy31IoPqmhOpRge",
+      });
 
-  const onDrop = useCallback(acceptedFiles => {
-    setFile(acceptedFiles)
-  }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop
-  });
+      dbx.filesUpload({ path: "/" + file.name, contents: file })
+        .then(function(response) {
+          console.log(response);
+          props.setFile(file);
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
+      
+    })
+  }
 
-  const handleChange = (): void => {
-    props.setFile(file);
+  const handleChange =()=> {
     props.setStep(4);
-  };
+  }
 
   return (
     <Container className={"h-100"} fluid>
@@ -37,19 +46,26 @@ export default function StepOne(props: Props) {
               <Label for="firstName" className="mr-sm-2">
                 Upload Resume
               </Label>
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                {isDragActive ? (
-                  <p>Drop the files here ...</p>
-                ) : (
-                  <p>Drag 'n' drop some files here, or click to select files</p>
+              <Dropzone
+                onDrop={onDrop}
+                // onFileDialogCancel={this.onCancel.bind(this)}
+                multiple={false}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    {...getRootProps()}
+                    className="dropzone w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+                  >
+                    <p>Drop files here, or click to select files</p>
+                    <input {...getInputProps()} />
+                  </div>
                 )}
-              </div>
+              </Dropzone>
             </FormGroup>
             <Button
               onClick={e => {
                 e.preventDefault;
-                handleChange()
+                handleChange();
               }}
             >
               Submit
