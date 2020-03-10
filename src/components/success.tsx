@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Col, Row } from "reactstrap";
-import { Button } from "reactstrap";
-import { Props } from "../helpers/helpers"
+import { Props } from "../helpers/helpers";
 
-export default function Welcome(props: Props) {
+export default function Success(props: Props) {
   return (
     <Container className={"h-100"} fluid>
       <Row className={"h-100"} style={{ backgroundColor: "#000" }}>
@@ -13,18 +12,12 @@ export default function Welcome(props: Props) {
           }
         >
           <h1 style={{ ...H1Style }} className="text-center">
-            Welcome to our resume uploader
+            Nice! You've successfully uploaded your resume
           </h1>
           <p style={{ ...ParagraphStyle }}>
-            Follow the next steps to start your application
+            We will be in touch with you at {props.mail}
           </p>
-          <Button 
-            className={"btn-lg w-50 mt-5"} 
-            style={{ ...ButtonStyle }}
-            onClick={()=>{props.setStep(2)}}
-          >
-            Start
-          </Button>
+          <p>In the mean time, visit this google form {props.response.data.message}</p>
         </Col>
       </Row>
     </Container>
@@ -34,7 +27,7 @@ export default function Welcome(props: Props) {
 const H1Style = {
   fontFamily: "Montserrat, sans-serif",
   color: "#FFAC08",
-  fontWeight: 600,
+  fontWeight: 600
 };
 
 const ParagraphStyle = {
