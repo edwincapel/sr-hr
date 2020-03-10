@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "build-web": "expo build:web"
   },
   "dependencies": {
     "@types/react-pdf": "^4.0.3",
@@ -13,6 +14,8 @@
     "bootstrap": "^4.4.1",
     "dropbox": "^4.0.30",
     "expo": "~36.0.0",
+    "global": "^4.4.0",
+    "netlify-cli": "^2.37.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-dropzone": "^10.2.1",
