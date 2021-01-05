@@ -13,7 +13,7 @@
     "@types/react-helmet": "^5.0.15",
     "@types/react-pdf": "^4.0.3",
     "@types/reactstrap": "^8.4.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-plugin-dotenv": "^0.1.1",
     "bootstrap": "^4.4.1",
     "dropbox": "^4.0.30",
